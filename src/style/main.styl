@@ -1,0 +1,232 @@
+rx = 1vh
+bg = #444
+neutral = #555
+selectable = #666
+white0 = #fff
+white1 = #ddd
+white2 = #ccc
+black0 = #333
+black1 = #222
+black2 = #000
+bomb0 = #f44
+bomb1 = #f00
+bomb2 = #c00
+shadow1 = drop-shadow(0 0 1vh #0004)
+shadow2 = drop-shadow(0 0 1vh #0008)
+short = .25s
+long = .5s
+very-long = 1s ease-in-out
+
+body
+  background bg
+  color white0
+  display flex
+  align-items center
+  justify-content center
+  font-family monospace
+  margin 0
+  overflow hidden
+  user-select none
+  height 100vh
+
+h1
+  margin 0
+
+h2:first-letter
+  text-transform capitalize
+
+.board
+  transition very-long
+  &.rotated
+    transform rotate(180deg)
+    #row-0 *
+      z-index 6
+    #row-1 *
+      z-index 5
+    #row-2 *
+      z-index 4
+    #row-3 *
+      z-index 3
+    #row-4 *
+      z-index 2
+    #row-5 *
+      z-index 1
+    #row-6 *
+      z-index 0
+    .cell
+      &.selectable
+        &:hover
+          transform translateY(.5vh)
+      *
+        &.double
+          transform translateY(2vh)
+          &.second
+            transform translateY(-3.5vh)
+        &.triple
+          transform translateY(2vh)
+          &.second
+            transform translateY(12.5vh)
+          &.third
+            transform translateY(23vh)
+    .white
+      box-shadow 0 -2vh white2
+      transform translateY(2vh)
+      &.wall
+        box-shadow 0 2vh white1
+        transform none
+        &.double
+          transform translateY(1.5vh)
+          &.second
+            transform translateY(5vh)
+        &.triple
+          transform translateY(3vh)
+          &.second
+            transform translateY(6.5vh)
+          &.third
+            transform translateY(10vh)
+      &.on-bomb
+        box-shadow 0 -2vh white2
+        transform translateY(16.5vh)
+    .black
+      box-shadow 0 -2vh black2
+      transform translateY(2vh)
+      &.wall
+        box-shadow 0 2vh black1
+        transform none
+        &.double
+          transform translateY(1.5vh)
+          &.second
+            transform translateY(5vh)
+        &.triple
+          transform translateY(3vh)
+          &.second
+            transform translateY(6.5vh)
+          &.third
+            transform translateY(10vh)
+      &.on-bomb
+        box-shadow 0 -2vh black2
+        transform translateY(16.5vh)
+    .bomb
+      box-shadow 0 -6vh bomb2
+      transform translateY(6vh)
+
+.icon
+  fill black1
+  transition short
+  &:hover
+    fill black2
+  &:active
+    fill white2
+  &.cancel
+    width 14px * 4
+    height 12px * 4
+  &-shadow
+    fill black0
+
+.text
+  position absolute
+  top 2vh
+  left 2vh
+
+.row
+  display flex
+  justify-content center
+
+.cell
+  background neutral
+  border-radius rx
+  margin .5vh
+  transition short
+  width 10vh
+  height 8vh
+  &.selectable
+    background selectable
+    box-shadow 0 0 2vh neutral
+    &:hover
+      transform translateY(-.5vh)
+  *
+    border-radius rx
+    width 100%
+    height 100%
+    transition long
+    &.double
+      transform translateY(-2vh)
+      &.second
+        transform translateY(-12.5vh)
+    &.triple
+      transform translateY(-2vh)
+      &.second
+        transform translateY(-12.5vh)
+      &.third
+        transform translateY(-23vh)
+
+.white
+  background white1
+  box-shadow 0 2vh white2
+  filter shadow1
+  transform translateY(-2vh)
+  &.selectable
+    background white0
+    &.on-bomb
+      background white0
+      filter shadow1
+  &.wall
+    background white2
+    box-shadow 0 -2vh white1
+    height 6vh
+    transform none
+    &.double
+      transform translateY(-1.5vh)
+      &.second
+        transform translateY(-5vh)
+    &.triple
+      transform translateY(-3vh)
+      &.second
+        transform translateY(-6.5vh)
+      &.third
+        transform translateY(-10vh)
+  &.on-bomb
+    background white1
+    box-shadow 0 2vh white2
+    filter shadow1
+    transform translateY(-16.5vh)
+
+.black
+  background black1
+  box-shadow 0 2vh black2
+  filter shadow2
+  transform translateY(-2vh)
+  &.selectable
+    background black0
+    &.on-bomb
+      background black0
+      filter shadow2
+  &.wall
+    background black2
+    box-shadow 0 -2vh black1
+    height 6vh
+    transform none
+    &.double
+      transform translateY(-1.5vh)
+      &.second
+        transform translateY(-5vh)
+    &.triple
+      transform translateY(-3vh)
+      &.second
+        transform translateY(-6.5vh)
+      &.third
+        transform translateY(-10vh)
+  &.on-bomb
+    background black1
+    box-shadow 0 2vh black2
+    filter shadow2
+    transform translateY(-16.5vh)
+
+.bomb
+  background bomb1
+  box-shadow 0 6vh bomb2
+  transform translateY(-6vh)
+  filter shadow2
+  &.selectable
+    background bomb0
+    filter drop-shadow(0 0 1vh bomb1)
