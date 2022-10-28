@@ -5,12 +5,12 @@
   >
     <div :class="classes" />
     <div
-      v-if="Number(cell.number) >= 2"
+      v-if="cell.number >= 2"
       :class="classes"
       class="second"
     />
     <div
-      v-if="Number(cell.number) == 3"
+      v-if="cell.number == 3"
       :class="classes"
       class="third"
     />

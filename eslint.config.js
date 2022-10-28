@@ -369,7 +369,10 @@ export default [
   { files: [ '**/*.js', '**/*.ts', '**/*.vue' ] },
   {
     languageOptions: {
-      globals: { console: 'readonly' },
+      globals: {
+        console: 'readonly',
+        window: 'readonly',
+      },
       parser: vueParser,
       parserOptions: {
         parser: tsParser,
