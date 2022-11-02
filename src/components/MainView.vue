@@ -1,6 +1,6 @@
 <template>
   <div class="text">
-    <h1>Brick Bomb™</h1>
+    <h1>Bomb 37</h1>
     <h2>{{ turn }}'s turn</h2>
     <h2 v-if="win">
       {{ win }} wins!
@@ -21,7 +21,7 @@
       </svg>
     </div>
   </div>
-  <div class="board">
+  <div class="board" :class="{rotated: turn=='white'}">
     <div
       v-for="row, rowIndex in rows"
       :id="`row-${rowIndex}`"

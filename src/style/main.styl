@@ -1,4 +1,3 @@
-rx = 1vh
 bg = #444
 neutral = #555
 selectable = #666
@@ -16,6 +15,7 @@ shadow2 = drop-shadow(0 0 1vh #0008)
 short = .25s
 long = .5s
 very-long = 1s ease-in-out
+rx = 1vh
 
 body
   background bg
@@ -65,47 +65,37 @@ h2:first-letter
         &.triple
           transform translateY(2vh)
           &.second
-            transform translateY(12.5vh)
+            transform translateY(-3.5vh)
           &.third
-            transform translateY(23vh)
+            transform translateY(-9vh)
+    .wall
+      transform none
+      &.double
+        transform translateY(4vh)
+        &.second
+          transform translateY(-4.5vh)
+      &.triple
+        transform translateY(5vh)
+        &.second
+          transform translateY(-3.5vh)
+        &.third
+          transform translateY(-12vh)
     .white
       box-shadow 0 -2vh white2
       transform translateY(2vh)
       &.wall
         box-shadow 0 2vh white1
-        transform none
-        &.double
-          transform translateY(1.5vh)
-          &.second
-            transform translateY(5vh)
-        &.triple
-          transform translateY(3vh)
-          &.second
-            transform translateY(6.5vh)
-          &.third
-            transform translateY(10vh)
       &.on-bomb
         box-shadow 0 -2vh white2
-        transform translateY(16.5vh)
+        transform translateY(.5vh)
     .black
       box-shadow 0 -2vh black2
       transform translateY(2vh)
       &.wall
         box-shadow 0 2vh black1
-        transform none
-        &.double
-          transform translateY(1.5vh)
-          &.second
-            transform translateY(5vh)
-        &.triple
-          transform translateY(3vh)
-          &.second
-            transform translateY(6.5vh)
-          &.third
-            transform translateY(10vh)
       &.on-bomb
         box-shadow 0 -2vh black2
-        transform translateY(16.5vh)
+        transform translateY(.5vh)
     .bomb
       box-shadow 0 -6vh bomb2
       transform translateY(6vh)
@@ -146,9 +136,9 @@ h2:first-letter
       transform translateY(-.5vh)
   *
     border-radius rx
+    transition long
     width 100%
     height 100%
-    transition long
     &.double
       transform translateY(-2vh)
       &.second
@@ -159,6 +149,16 @@ h2:first-letter
         transform translateY(-12.5vh)
       &.third
         transform translateY(-23vh)
+  .wall.double
+    transform translateY(-1.5vh)
+    &.second
+      transform translateY(-5vh)
+  .wall.triple
+    transform translateY(-3vh)
+    &.second
+      transform translateY(-6.5vh)
+    &.third
+      transform translateY(-10vh)
 
 .white
   background white1
@@ -173,18 +173,8 @@ h2:first-letter
   &.wall
     background white2
     box-shadow 0 -2vh white1
-    height 6vh
     transform none
-    &.double
-      transform translateY(-1.5vh)
-      &.second
-        transform translateY(-5vh)
-    &.triple
-      transform translateY(-3vh)
-      &.second
-        transform translateY(-6.5vh)
-      &.third
-        transform translateY(-10vh)
+    height 6vh
   &.on-bomb
     background white1
     box-shadow 0 2vh white2
@@ -206,16 +196,6 @@ h2:first-letter
     box-shadow 0 -2vh black1
     height 6vh
     transform none
-    &.double
-      transform translateY(-1.5vh)
-      &.second
-        transform translateY(-5vh)
-    &.triple
-      transform translateY(-3vh)
-      &.second
-        transform translateY(-6.5vh)
-      &.third
-        transform translateY(-10vh)
   &.on-bomb
     background black1
     box-shadow 0 2vh black2
@@ -225,8 +205,8 @@ h2:first-letter
 .bomb
   background bomb1
   box-shadow 0 6vh bomb2
-  transform translateY(-6vh)
   filter shadow2
+  transform translateY(-6vh)
   &.selectable
     background bomb0
     filter drop-shadow(0 0 1vh bomb1)
