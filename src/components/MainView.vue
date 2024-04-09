@@ -6,22 +6,36 @@
       {{ win }} wins!
     </h2>
     <div
+      @click="rotated = !rotated"
+    >
+      <svg
+        class="rotate icon"
+        viewBox="0 0 12 14"
+      >
+        <path
+          class="icon-shadow"
+          d="m0 6l4-4v1h4l4 3v2a4 4 0 01-4 4v-1l-3 3v-2h-1a4 4 0 01-4-4zm4-1v1a1 1 0 000 4l4-1v-1h2a2 2 0 00-2-2h-1v2z"
+        />
+        <path d="m4 3 3-3v2h1a2 2 90 010 8l1-1-1-1a2 2 90 000-4h-1v2zm0-1-1 1 1 1a1 1 0 000 4h1v-2l3 3-3 3v-2h-1a1 1 0 010-8z" />
+      </svg>
+    </div>
+    <div
       v-if="selected"
       @click="removeSelection"
     >
       <svg
         class="cancel icon"
-        viewBox="0 0 14 12"
+        viewBox="0 0 12 12"
       >
         <path
           class="icon-shadow"
-          d="m0 3h11l3 3v2a4 4 0 01-4 4h-2v-3h3l1-1a2 2 0 00-2-2h-7v2l-3-3z"
+          d="m0 3h9l3 3v2a4 4 0 01-4 4h-2v-3h3l1-1a2 2 0 00-2-2h-5v2l-3-3z"
         />
-        <path d="m0 3 3-3v2h7a2 2 90 010 8h-2v-2h2a2 2 90 000-4h-7v2z" />
+        <path d="m0 3 3-3v2h5a2 2 90 010 8h-2v-2h2a2 2 90 000-4h-5v2z" />
       </svg>
     </div>
   </div>
-  <div class="board" :class="{rotated: turn=='white'}">
+  <div class="board" :class="{rotated}">
     <div
       v-for="row, rowIndex in rows"
       :id="`row-${rowIndex}`"
@@ -57,6 +71,7 @@ export default defineComponent({
       turn: 'white' as Team,
       selected: null as Coord | null,
       rows: [] as Cell[][],
+      rotated: false,
     }
   },
 
@@ -72,10 +87,6 @@ export default defineComponent({
     this.turn = Math.random() > 0.5 ? 'white' : 'black'
     window.addEventListener('keydown', ({ key }) => {
       if (key == 'Escape') this.removeSelection()
-    })
-    window.addEventListener('contextmenu', ({ preventDefault }) => {
-      preventDefault()
-      this.removeSelection()
     })
   },
 
