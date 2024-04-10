@@ -14,7 +14,6 @@ shadow1 = drop-shadow(0 0 1vh #0004)
 shadow2 = drop-shadow(0 0 1vh #0008)
 short = .25s
 long = .5s
-very-long = 1s ease-in-out
 rx = 1vh
 
 body
@@ -36,7 +35,13 @@ h2:first-letter
   text-transform capitalize
 
 .board
-  transition very-long
+  transition long
+  @media screen and (max-width: 1050px)
+    scale .9
+  @media screen and (max-width: 690px)
+    scale .75
+  @media screen and (max-width: 540px)
+    scale .55
   &.rotated
     transform rotate(180deg)
     #row-0 *
