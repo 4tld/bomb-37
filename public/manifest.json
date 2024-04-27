@@ -1,7 +1,7 @@
 {
-  "short_name": "changeme",
-  "name": "changeme",
-  "description": "changeme",
+  "short_name": "Bomb 37",
+  "name": "Bomb 37",
+  "description": "Two player strategic game",
   "icons": [
     {
       "src": "favicon.ico",
@@ -13,5 +13,5 @@
   "background_color": "black",
   "display": "fullscreen",
   "scope": "/",
-  "theme_color": "#f80"
+  "theme_color": "#f00"
 }
